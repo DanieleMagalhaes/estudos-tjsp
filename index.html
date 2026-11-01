@@ -4,10 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Estudos TJ-SP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
 <style>
-:root{--bg:#f4f5f7;--card:#fff;--tx:#14181f;--mut:#667085;--bd:#e5e7eb;--ac:#4f46e5;--acs:#eef2ff;--acx:#fff;--ok:#16a34a;--wn:#d97706;--bad:#dc2626;--sh:0 1px 2px rgba(16,24,40,.05),0 1px 3px rgba(16,24,40,.08)}
-@media (prefers-color-scheme:dark){:root{--bg:#0f1115;--card:#171a21;--tx:#eef0f4;--mut:#9aa3b2;--bd:#262b36;--ac:#818cf8;--acs:#1f2347;--acx:#0f1115;--ok:#4ade80;--wn:#fbbf24;--bad:#f87171;--sh:none}}
+:root{--bg:#000;--card:#1c1c1e;--card2:#2a2a2e;--tx:#fff;--mut:#9a9aa3;--bd:#2c2c31;--ac:#8b5cf6;--acs:#2b2147;--acx:#fff;--ok:#34d399;--wn:#fbbf24;--bad:#f87171;--sh:none}
+@media (prefers-color-scheme:light){:root{--bg:#f2f2f7;--card:#fff;--card2:#efeff4;--tx:#111;--mut:#6b6b76;--bd:#e3e3ea;--ac:#7c3aed;--acs:#efe9ff;--acx:#fff;--ok:#059669;--wn:#b45309;--bad:#dc2626}}
 *{box-sizing:border-box}
 html,body{min-height:100%}
 body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-text-size-adjust:100%}
@@ -53,6 +55,8 @@ label.b{display:inline-flex;align-items:center;min-height:42px;padding:8px 12px;
 .bar{height:8px;background:var(--bd);border-radius:6px;overflow:hidden;min-width:70px}.bar i{display:block;height:100%;background:var(--ac)}
 .s{font-weight:600}.v{color:var(--bad)}.a{color:var(--wn)}.o{color:var(--ok)}
 .pill{display:inline-block;background:var(--acs);color:var(--ac);border-radius:20px;padding:2px 10px;font-size:12px;font-weight:600}
+.bi{width:1.15em;height:1.15em;vertical-align:-.18em;flex:none}
+button.b,label.b{display:inline-flex;align-items:center;justify-content:center;gap:6px}
 .sync{font-size:12px;color:var(--mut)}
 .banner{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;background:var(--acs);border:1px solid var(--ac);border-radius:14px;padding:16px;margin-bottom:12px}
 .banner .big{font-size:17px;font-weight:700;line-height:1.3;margin:2px 0}
@@ -68,6 +72,34 @@ input[type=date]{min-width:150px}
 #dlg{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:center;justify-content:center;z-index:20;padding:20px}
 #dlg .box{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:20px;max-width:380px;width:100%}
 #toast{position:fixed;left:50%;bottom:84px;transform:translateX(-50%);background:var(--tx);color:var(--bg);padding:10px 16px;border-radius:10px;font-size:14px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:9;max-width:90vw;text-align:center}
+h1,h2,.hd,.tt{font-family:"Barlow Condensed","Arial Narrow",system-ui,sans-serif;letter-spacing:.2px}
+h1{font-size:26px;font-weight:700}h2{font-size:21px;font-weight:700}
+.hd{font-size:38px;font-weight:700;line-height:1.05;margin:6px 0 14px}
+.top{background:transparent;border:0}
+.card{border-radius:24px;background:var(--card);border:1px solid var(--bd);box-shadow:none}
+button.b,label.b{border-radius:999px}
+button.ic2{border-radius:50%;width:38px;height:38px;padding:0}
+input,select{border-radius:14px;background:var(--card2);border-color:transparent}
+nav{background:color-mix(in srgb,var(--card) 94%,transparent);backdrop-filter:blur(14px)}
+nav button.on{color:var(--ac)}
+@media (min-width:860px){nav{background:transparent}nav button.on{background:var(--card)}}
+.info{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:13px 16px;border-radius:20px;background:var(--card);border:1px solid var(--bd);margin-bottom:12px;flex-wrap:wrap}
+.info.last{border-color:var(--ac);background:var(--acs)}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+@media (min-width:860px){.tiles{grid-template-columns:1.3fr 1fr 1fr}}
+.tile{background:var(--card);border:1px solid var(--bd);border-radius:26px;padding:16px;display:flex;flex-direction:column;gap:6px;min-height:120px}
+.tile.big{grid-row:span 2;min-height:260px}
+.tile .tg{font-size:12px;background:var(--card2);color:var(--mut);padding:3px 10px;border-radius:999px}
+.tile .tt{font-size:26px;font-weight:700;line-height:1.08}
+.ic3{width:38px;height:38px;border-radius:50%;background:var(--acs);color:var(--ac);display:inline-flex;align-items:center;justify-content:center;font-size:18px}
+.go{color:var(--ok);font-weight:700}
+.pillrow{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.pill2{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-radius:22px;background:var(--card);border:1px solid var(--bd);color:var(--tx);font:inherit;cursor:pointer}
+.ciclo{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.tc{border-color:color-mix(in srgb,var(--c) 55%,transparent)}
+.tc .bar{background:color-mix(in srgb,var(--c) 16%,transparent)}
+.tc button.b{background:color-mix(in srgb,var(--c) 20%,transparent);border:1px solid color-mix(in srgb,var(--c) 45%,transparent);color:var(--c)}
+.tc button.g{background:color-mix(in srgb,var(--c) 8%,transparent);border:1px solid color-mix(in srgb,var(--c) 30%,transparent);color:var(--c)}
 </style>
 </head>
 <body>
@@ -84,6 +116,8 @@ input[type=date]{min-width:150px}
 <div id="toast"></div>
 <div id="dlg"><div class="box"><div id="dmsg" style="margin-bottom:16px"></div><div class="row" style="justify-content:flex-end"><button class="b g" onclick="dlgNo()">Cancelar</button><button class="b" onclick="dlgOk()">Confirmar</button></div></div></div>
 <script>
+var ICO={"pencil": "<path d=\"M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325\"/>", "x-lg": "<path d=\"M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z\"/>", "dash-lg": "<path fill-rule=\"evenodd\" d=\"M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8\"/>", "chevron-left": "<path fill-rule=\"evenodd\" d=\"M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0\"/>", "chevron-right": "<path fill-rule=\"evenodd\" d=\"M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708\"/>", "check-circle-fill": "<path d=\"M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z\"/>", "play-circle-fill": "<path d=\"M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814z\"/>", "house-door": "<path d=\"M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4z\"/>", "pencil-square": "<path d=\"M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z\"/> <path fill-rule=\"evenodd\" d=\"M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z\"/>", "bar-chart-line": "<path d=\"M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1zm1 12h2V2h-2zm-3 0V7H7v7zm-5 0v-3H2v3z\"/>", "collection-play": "<path d=\"M2 3a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 0-1h-11A.5.5 0 0 0 2 3m2-2a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7A.5.5 0 0 0 4 1m2.765 5.576A.5.5 0 0 0 6 7v5a.5.5 0 0 0 .765.424l4-2.5a.5.5 0 0 0 0-.848z\"/> <path d=\"M1.5 14.5A1.5 1.5 0 0 1 0 13V6a1.5 1.5 0 0 1 1.5-1.5h13A1.5 1.5 0 0 1 16 6v7a1.5 1.5 0 0 1-1.5 1.5zm13-1a.5.5 0 0 0 .5-.5V6a.5.5 0 0 0-.5-.5h-13A.5.5 0 0 0 1 6v7a.5.5 0 0 0 .5.5z\"/>", "check2-circle": "<path d=\"M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0\"/> <path d=\"M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z\"/>", "file-earmark-spreadsheet": "<path d=\"M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V9H3V2a1 1 0 0 1 1-1h5.5zM3 12v-2h2v2zm0 1h2v2H4a1 1 0 0 1-1-1zm3 2v-2h3v2zm4 0v-2h3v1a1 1 0 0 1-1 1zm3-3h-3v-2h3zm-7 0v-2h3v2z\"/>", "download": "<path d=\"M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5\"/> <path d=\"M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z\"/>", "upload": "<path d=\"M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5\"/> <path d=\"M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708z\"/>", "calendar-event": "<path d=\"M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z\"/> <path d=\"M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z\"/>", "bullseye": "<path d=\"M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16\"/> <path d=\"M8 13A5 5 0 1 1 8 3a5 5 0 0 1 0 10m0 1A6 6 0 1 0 8 2a6 6 0 0 0 0 12\"/> <path d=\"M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6m0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8\"/> <path d=\"M9.5 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0\"/>"};
+function I(n){return '<svg class="bi" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">'+(ICO[n]||"")+'</svg>'}
 var SES=[["Direito Penal","Informática"],["Direito Processual Penal","Raciocínio Lógico"],["Português","Redação Discursiva"],["Direito Processual Civil","Atualidades"],["Direito Constitucional","Matemática"],["Normas da Corregedoria","Português"],["Direito Administrativo","Legislação Interna"]];
 var AULAS={"Português":74,"Direito Penal":26,"Direito Processual Penal":38,"Direito Processual Civil":34,"Direito Constitucional":36,"Direito Administrativo":20,"Normas da Corregedoria":37,"Legislação Interna":30,"Atualidades":44,"Matemática":73,"Raciocínio Lógico":39,"Informática":64,"Redação Discursiva":5,"Treinamento Intensivo":97};
 var DISC=Object.keys(AULAS).filter(function(d){return d!="Treinamento Intensivo"});
@@ -93,7 +127,8 @@ function hoje(){var d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+
 function br(i){var p=i.split("-");return p[2]+"/"+p[1]}
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
 function pct(f,a){return f?Math.round(a/f*100):null}
-function sem(p){return p===null?"":p<60?'<span class="v">● vermelho</span>':p<80?'<span class="a">● amarelo</span>':'<span class="o">● verde</span>'}
+function sem(p){return p===null?"":p<60?'<span class="v">● Ruim</span>':p<80?'<span class="a">● Regular</span>':'<span class="o">● Bom</span>'}
+function cor(p){return p===null?"var(--bd)":p<60?"var(--bad)":p<80?"var(--wn)":"var(--ok)"}
 function setSync(t){document.getElementById("sync").textContent=t}
 function merge(o){if(o&&typeof o==="object"){for(var k in S)if(o[k]!==undefined)S[k]=o[k]}}
 var CFG={url:"https://ltauszjhoelpctpjgruu.supabase.co",key:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx0YXVzempob2VscGN0cGpncnV1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTM0NTk4NTMsImV4cCI6MjEwOTAzNTg1M30.3CX9FI0nC9UFAgEw9eOUlJW_SkO-FpxCiuLhisMxP_4"};
@@ -119,8 +154,8 @@ function init(){
   else if(!session){uid=null;S=defaults();show(false)}},0)})}
 function render(){
  var dd=Math.ceil((new Date(2027,2,14)-new Date())/864e5);document.getElementById("dias").textContent=dd>0?"faltam "+dd+" dias":"dia da prova";
- var T=[["hoje","Hoje","◉"],["q","Questões","✎"],["des","Desempenho","▤"],["aul","Aulas","▶"]];
- document.getElementById("nav").innerHTML=T.map(function(t){return '<button class="'+(tab==t[0]?"on":"")+'" onclick="tab=\''+t[0]+'\';window.scrollTo(0,0);render()"><span class="ic">'+t[2]+'</span><span>'+t[1]+'</span></button>'}).join("");
+ var T=[["hoje","Hoje","house-door"],["q","Questões","pencil-square"],["des","Desempenho","bar-chart-line"],["aul","Aulas","collection-play"]];
+ document.getElementById("nav").innerHTML=T.map(function(t){return '<button class="'+(tab==t[0]?"on":"")+'" onclick="tab=\''+t[0]+'\';window.scrollTo(0,0);render()"><span class="ic">'+I(t[2])+'</span><span>'+t[1]+'</span></button>'}).join("");
  document.getElementById("app").innerHTML=({hoje:vHoje,q:vQ,des:vDes,aul:vAul})[tab]();
 }
 var _cb=null;
@@ -129,30 +164,35 @@ function dlgNo(){document.getElementById("dlg").style.display="none";_cb=null}
 function dlgOk(){document.getElementById("dlg").style.display="none";var f=_cb;_cb=null;if(f)f()}
 var qpage=0,eq=-1,PG=5,eh=-1,preD="";
 function toast(t){var e=document.getElementById("toast");e.textContent=t;e.style.opacity=1;clearTimeout(window._tt);window._tt=setTimeout(function(){e.style.opacity=0},2600)}
-function qrow(i){var x=S.q[i];return '<tr><td>'+br(x.d)+'</td><td>'+esc(x.m)+'</td><td>'+esc(x.a||"")+'</td><td>'+x.f+'</td><td>'+x.c+'</td><td>'+pct(x.f,x.c)+'%</td><td style="white-space:nowrap"><button class="b g ic2" title="Editar" onclick="editQ('+i+')">✎</button> <button class="b g ic2" title="Excluir" onclick="delQ('+i+')">✕</button></td></tr>'}
+function qrow(i){var x=S.q[i];return '<tr><td>'+br(x.d)+'</td><td>'+esc(x.m)+'</td><td>'+esc(x.a||"")+'</td><td>'+x.f+'</td><td>'+x.c+'</td><td>'+pct(x.f,x.c)+'%</td><td style="white-space:nowrap"><button class="b g ic2" title="Editar" onclick="editQ('+i+')">'+I("pencil")+'</button> <button class="b g ic2" title="Excluir" onclick="delQ('+i+')">'+I("x-lg")+'</button></td></tr>'}
 var QH='<tr><th>Data</th><th>Disciplina</th><th>Assunto</th><th>F</th><th>A</th><th>%</th><th></th></tr>';
 function vHoje(){
  var i=S.next,par=SES[i],h=hoje(),c=S.ck[i]||{};
  var dots=SES.map(function(_,k){return '<button class="dot '+(k==i?"c":k<i?"d":"")+'" onclick="irPara('+k+')" title="Sessão '+(k+1)+': '+SES[k].join(" + ")+'">'+(k+1)+'</button>'}).join("");
- var L=S.hist[S.hist.length-1];
- var ult='<div><div class="mut">✔ Última sessão concluída</div>'+(L?'<div class="big">Sessão '+(L.s+1)+' · '+SES[L.s].join(" + ")+'</div><div class="mut">'+dia(L.d)+'</div>':'<div class="big">Nenhuma ainda</div>')+'</div>';
- var prox='<div><div class="mut go">▶ Fazer agora</div><div class="big go">Sessão '+(i+1)+' · '+par.join(" + ")+'</div><div class="mut">Sessão selecionada no ciclo</div></div>';
- var out='<div class="banner">'+ult+prox+((L&&L.d==h)?'<div class="aviso">Você já concluiu uma sessão hoje. Faça a próxima só se quiser avançar mais.</div>':'')+'</div>';
- out+='<div class="card hero"><div><h2 style="margin:0">Ciclo de 7 sessões</h2><div class="mut">Teoria 45 · questões 25 · pausa 10 · teoria 45 · questões 25 · revisão 30</div></div><div><div class="dots">'+dots+'</div><div class="mut" style="margin-top:6px;text-align:right">Toque em um número para ir à sessão</div></div></div><div class="grid">';
+ var L=S.hist[S.hist.length-1],dd=Math.ceil((new Date(2027,2,14)-new Date())/864e5);
+ var tot=0,ass=0;Object.keys(AULAS).forEach(function(d){tot+=AULAS[d];ass+=Math.min(S.aulas[d]||0,AULAS[d])});
+ var qf=0,qc=0;S.q.forEach(function(x){qf+=x.f;qc+=x.c});var pa=pct(qf,qc);
+ var out='<div class="hd">Hoje</div><div class="info"><span>'+I("calendar-event")+' Prova em 14/03/2027</span><span class="mut">'+(dd>0?"faltam "+dd+" dias":"dia da prova")+'</span></div>';
+ out+='<div class="info last"><span class="go">'+I("check-circle-fill")+' Última sessão concluída</span><b>'+(L?'Sessão '+(L.s+1)+' · '+SES[L.s].join(" + "):'Nenhuma ainda')+'</b>'+(L?'<span class="mut">'+dia(L.d)+'</span>':'')+((L&&L.d==h)?'<span class="aviso" style="width:100%">Você já concluiu uma sessão hoje. Faça a próxima só se quiser avançar mais.</span>':'')+'</div>';
+ out+='<div class="tiles"><div class="tile big"><div class="row" style="justify-content:space-between"><span class="ic3">'+I("play-circle-fill")+'</span><span class="tg">Sessão '+(i+1)+' de 7</span></div><div class="go" style="margin-top:8px">Fazer agora</div><div class="tt">'+par.join(" + ")+'</div><button class="b" style="margin-top:auto" onclick="fim()">'+I("check2-circle")+' Concluir sessão</button></div>'
+ +'<div class="tile" style="cursor:pointer" onclick="tab=\'aul\';window.scrollTo(0,0);render()"><div class="row" style="justify-content:space-between"><span class="ic3">'+I("collection-play")+'</span><span class="tg">'+ass+'/'+tot+'</span></div><div class="tt" style="margin-top:auto">Aulas '+Math.round(ass/tot*100)+'%</div></div>'
+ +'<div class="tile" style="cursor:pointer" onclick="tab=\'des\';window.scrollTo(0,0);render()"><div class="row" style="justify-content:space-between"><span class="ic3">'+I("bullseye")+'</span><span class="tg">'+qf+' questões</span></div><div class="tt" style="margin-top:auto">Acertos '+(pa===null?"—":pa+"%")+'</div></div></div>';
+ out+='<div class="pillrow"><button class="pill2" onclick="vol()">'+I("chevron-left")+' Voltar</button><button class="pill2" onclick="avan()">Avançar '+I("chevron-right")+'</button></div>';
+ out+='<div class="info ciclo"><b>Ciclo de 7 sessões</b><div class="dots">'+dots+'</div><span class="mut" style="width:100%">Teoria 45 · questões 25 · pausa 10 · teoria 45 · questões 25 · revisão 30. Toque em um número para ir à sessão.</span></div><div class="grid">';
  par.forEach(function(m,k){
   out+='<div class="card"><h2>'+m+'</h2>';
   [["t","Teoria (45 min)"],["q","Questões (25 min)"],["r","Revisão final (15 min)"]].forEach(function(x){
    var key=k+x[0];out+='<label class="ck"><input type="checkbox" '+(c[key]?"checked":"")+' onchange="tick(\''+key+'\',this.checked)"> '+x[1]+'</label>'});
   var na=S.aulas[m]||0,nt=AULAS[m],pp=Math.round(na/nt*100);
-  out+='<div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--bd)"><div class="row" style="justify-content:space-between"><b>Aulas do Gran</b><span class="mut">'+na+' / '+nt+' ('+pp+'%)</span></div><div class="bar" style="margin:8px 0"><i style="width:'+pp+'%"></i></div><div class="row"><button class="b g" onclick="aul(\''+m+'\',-1)">−</button><button class="b" onclick="aul(\''+m+'\',1)">+1 aula assistida</button><input class="t" placeholder="Onde parei (ex.: aula 7, 12:40)" value="'+esc(S.onde[m]||"")+'" onchange="onde(\''+m+'\',this.value)"></div></div>';
-  out+='<div class="row" style="margin-top:10px"><button class="b g" onclick="goQ(\''+m+'\')">Registrar questões ›</button></div></div>'});
- out+='</div><div class="row" style="margin-bottom:12px"><button class="b g" onclick="vol()">‹ Voltar</button><button class="b g" onclick="avan()">Avançar ›</button><button class="b" onclick="fim()">Concluir sessão e avançar</button></div>';
+  out+='<div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--bd)"><div class="row" style="justify-content:space-between"><b>Aulas do Gran</b><span class="mut">'+na+' / '+nt+' ('+pp+'%)</span></div><div class="bar" style="margin:8px 0"><i style="width:'+pp+'%"></i></div><div class="row"><button class="b g" onclick="aul(\''+m+'\',-1)">'+I("dash-lg")+'</button><button class="b" onclick="aul(\''+m+'\',1)">+1 aula assistida</button><input class="t" placeholder="Onde parei (ex.: aula 7, 12:40)" value="'+esc(S.onde[m]||"")+'" onchange="onde(\''+m+'\',this.value)"></div></div>';
+  out+='<div class="row" style="margin-top:10px"><button class="b g" onclick="goQ(\''+m+'\')">Registrar questões '+I("chevron-right")+'</button></div></div>'});
+ out+='</div><div class="row" style="margin-bottom:12px"><button class="b" onclick="fim()">'+I("check2-circle")+' Concluir sessão e avançar</button></div>';
  var hj=[];S.q.forEach(function(x,j){if(x.d==h)hj.push(j)});
  out+='<div class="card w"><h2>Questões registradas hoje</h2>'+(hj.length?'<table class="tbl">'+QH+hj.reverse().map(qrow).join("")+'</table><div class="mut" style="margin-top:8px">O histórico completo fica na aba Questões.</div>':'<div class="mut">Nenhuma questão registrada hoje. Use “Registrar questões” em cada matéria; o histórico completo fica na aba Questões.</div>')+'</div>';
  var H=S.hist.map(function(x,j){return [x,j]}).slice(-5).reverse();
  if(H.length)out+='<div class="card"><h2>Últimas sessões concluídas</h2>'+H.map(function(p){var x=p[0],j=p[1];
   if(eh==j)return '<div class="row" style="padding:6px 0"><input type="date" id="hd" value="'+x.d+'"><select id="hs">'+SES.map(function(q,k){return '<option value="'+k+'"'+(k==x.s?" selected":"")+'>Sessão '+(k+1)+' · '+q.join(" + ")+'</option>'}).join("")+'</select><button class="b" onclick="saveH()">Salvar</button><button class="b g" onclick="eh=-1;render()">Cancelar</button></div>';
-  return '<div class="row" style="justify-content:space-between;padding:4px 0"><span class="mut">'+br(x.d)+' · sessão '+(x.s+1)+' · '+SES[x.s].join(" + ")+'</span><span style="white-space:nowrap"><button class="b g ic2" title="Editar" onclick="editH('+j+')">✎</button> <button class="b g ic2" title="Excluir" onclick="delH('+j+')">✕</button></span></div>'}).join("")+'</div>';
+  return '<div class="row" style="justify-content:space-between;padding:4px 0"><span class="mut">'+br(x.d)+' · sessão '+(x.s+1)+' · '+SES[x.s].join(" + ")+'</span><span style="white-space:nowrap"><button class="b g ic2" title="Editar" onclick="editH('+j+')">'+I("pencil")+'</button> <button class="b g ic2" title="Excluir" onclick="delH('+j+')">'+I("x-lg")+'</button></span></div>'}).join("")+'</div>';
  return out}
 function dia(d){var a=new Date(hoje()+"T00:00:00"),b=new Date(d+"T00:00:00"),n=Math.round((a-b)/864e5);var w=["domingo","segunda","terça","quarta","quinta","sexta","sábado"][b.getDay()];
  return w+", "+br(d)+" · "+(n==0?"hoje":n==1?"ontem":"há "+n+" dias")}
@@ -173,8 +213,8 @@ function vQ(){
  var form='<div class="card"><h2>'+(e?"Editar registro":"Novo registro")+'</h2><div class="row"><select id="qm">'+DISC.map(function(d){return '<option'+((e?e.m:preD)==d?" selected":"")+'>'+d+'</option>'}).join("")+'</select><input class="t" id="qa" placeholder="Assunto" value="'+(e?esc(e.a||""):"")+'"><input type="date" id="qd" value="'+(e?e.d:hoje())+'"></div><div class="row" style="margin-top:8px"><input type="number" id="qf" placeholder="Feitas" min="0" value="'+(e?e.f:"")+'"><input type="number" id="qc" placeholder="Acertos" min="0" value="'+(e?e.c:"")+'"><button class="b" onclick="saveQ()">'+(e?"Salvar alteração":"Adicionar")+'</button>'+(e?'<button class="b g" onclick="cancelQ()">Cancelar</button>':"")+'</div></div>';
  var n=S.q.length,pages=Math.max(1,Math.ceil(n/PG));if(qpage>=pages)qpage=pages-1;
  var rows="";for(var j=0;j<PG;j++){var i=n-1-(qpage*PG+j);if(i<0)break;rows+=qrow(i)}
- var tbl='<div class="card w"><h2>Registros ('+n+')</h2>'+(n?'<table class="tbl">'+QH+rows+'</table><div class="row" style="justify-content:space-between;margin-top:10px"><button class="b g" onclick="qpage--;render()" '+(qpage<=0?"disabled":"")+'>‹ Anterior</button><span class="mut">Página '+(qpage+1)+' de '+pages+' · mais recentes primeiro</span><button class="b g" onclick="qpage++;render()" '+(qpage>=pages-1?"disabled":"")+'>Próxima ›</button></div>':'<div class="mut">Nenhum registro ainda.</div>')+'</div>';
- return form+tbl+'<div class="row"><button class="b g" onclick="csv()">Baixar CSV (Excel/Sheets)</button><button class="b g" onclick="bkp()">Salvar backup</button><label class="b g">Restaurar backup<input type="file" accept=".json" style="display:none" onchange="imp(this)"></label></div>'}
+ var tbl='<div class="card w"><h2>Registros ('+n+')</h2>'+(n?'<table class="tbl">'+QH+rows+'</table><div class="row" style="justify-content:space-between;margin-top:10px"><button class="b g" onclick="qpage--;render()" '+(qpage<=0?"disabled":"")+'>'+I("chevron-left")+' Anterior</button><span class="mut">Página '+(qpage+1)+' de '+pages+' · mais recentes primeiro</span><button class="b g" onclick="qpage++;render()" '+(qpage>=pages-1?"disabled":"")+'>Próxima '+I("chevron-right")+'</button></div>':'<div class="mut">Nenhum registro ainda.</div>')+'</div>';
+ return '<div class="hd">Questões</div>'+form+tbl+'<div class="row"><button class="b g" onclick="csv()">'+I("file-earmark-spreadsheet")+' Baixar CSV (Excel/Sheets)</button><button class="b g" onclick="bkp()">'+I("download")+' Salvar backup</button><label class="b g">'+I("upload")+' Restaurar backup<input type="file" accept=".json" style="display:none" onchange="imp(this)"></label></div>'}
 function saveQ(){var f=+document.getElementById("qf").value,a=+document.getElementById("qc").value,d=document.getElementById("qd").value;
  if(!f||a>f||a<0||!d){toast("Confira data, Feitas e Acertos (acertos não pode passar de feitas).");return}
  var r={d:d,m:document.getElementById("qm").value,a:document.getElementById("qa").value,f:f,c:a};
@@ -186,13 +226,14 @@ function delQ(i){ask("Excluir este registro? Esta ação não pode ser desfeita.
 function vDes(){
  var tf=0,tc=0;
  var rows=DISC.map(function(d){var f=0,c=0;S.q.forEach(function(x){if(x.m==d){f+=x.f;c+=x.c}});tf+=f;tc+=c;var p=pct(f,c);
-  return '<tr><td>'+d+'</td><td>'+f+'</td><td>'+c+'</td><td class="s">'+(p===null?"—":p+"%")+'</td><td style="min-width:90px"><div class="bar"><i style="width:'+(p||0)+'%"></i></div></td><td>'+sem(p)+'</td></tr>'}).join("");
- return '<div class="card w"><h2>Acertos por disciplina</h2><table class="tbl"><tr><th>Disciplina</th><th>Feitas</th><th>Acertos</th><th>%</th><th></th><th>Situação</th></tr>'+rows+'<tr><td class="s">Total</td><td>'+tf+'</td><td>'+tc+'</td><td class="s">'+(pct(tf,tc)===null?"—":pct(tf,tc)+"%")+'</td><td></td><td></td></tr></table><div class="mut" style="margin-top:8px">Vermelho: abaixo de 60% · amarelo: 60 a 79% · verde: 80% ou mais (metas sugeridas, ajuste como quiser).</div></div>'}
+  return '<tr><td>'+d+'</td><td>'+f+'</td><td>'+c+'</td><td class="s">'+(p===null?"—":p+"%")+'</td><td style="min-width:90px"><div class="bar"><i style="width:'+(p||0)+'%;background:'+cor(p)+'"></i></div></td><td>'+sem(p)+'</td></tr>'}).join("");
+ return '<div class="hd">Desempenho</div><div class="card w"><h2>Acertos por disciplina</h2><table class="tbl"><tr><th>Disciplina</th><th>Feitas</th><th>Acertos</th><th>%</th><th></th><th>Situação</th></tr>'+rows+'<tr><td class="s">Total</td><td>'+tf+'</td><td>'+tc+'</td><td class="s">'+(pct(tf,tc)===null?"—":pct(tf,tc)+"%")+'</td><td></td><td></td></tr></table><div class="mut" style="margin-top:8px">Ruim: abaixo de 60% · Regular: 60 a 79% · Bom: 80% ou mais (metas sugeridas, ajuste como quiser).</div></div>'}
+var CORES={"Português":"#f472b6","Direito Penal":"#f87171","Direito Processual Penal":"#fb923c","Direito Processual Civil":"#fbbf24","Direito Constitucional":"#a3e635","Direito Administrativo":"#34d399","Normas da Corregedoria":"#2dd4bf","Legislação Interna":"#22d3ee","Atualidades":"#60a5fa","Matemática":"#818cf8","Raciocínio Lógico":"#a78bfa","Informática":"#c084fc","Redação Discursiva":"#e879f9","Treinamento Intensivo":"#94a3b8"};
 function vAul(){
  var tot=0,ass=0;
  var rows=Object.keys(AULAS).map(function(d){var n=AULAS[d],a=S.aulas[d]||0;tot+=n;ass+=a;var p=Math.round(a/n*100);
-  return '<div class="card"><div class="row" style="justify-content:space-between"><b>'+d+'</b><span class="mut">'+a+' / '+n+' ('+p+'%)</span></div><div class="bar"><i style="width:'+p+'%"></i></div><div class="row" style="margin-top:10px"><button class="b g" onclick="aul(\''+d+'\',-1)">−</button><button class="b" onclick="aul(\''+d+'\',1)">+1 aula</button><input class="t" placeholder="Onde parei (aula e minuto)" value="'+esc(S.onde[d]||"")+'" onchange="onde(\''+d+'\',this.value)"></div></div>'}).join("");
- return '<div class="card"><h2>Controle de aulas do Gran</h2><div class="mut">Seu controle próprio, já que a conta é compartilhada. Total: '+ass+' de '+tot+' aulas ('+Math.round(ass/tot*100)+'%).</div><div class="bar" style="margin-top:10px"><i style="width:'+Math.round(ass/tot*100)+'%"></i></div></div><div class="grid">'+rows+'</div>'}
+  return '<div class="card tc" style="--c:'+(CORES[d]||"#94a3b8")+'"><div class="row" style="justify-content:space-between"><b>'+d+'</b><span class="mut">'+a+' / '+n+' ('+p+'%)</span></div><div class="bar"><i style="width:'+p+'%;background:var(--c)"></i></div><div class="row" style="margin-top:10px"><button class="b g" onclick="aul(\''+d+'\',-1)">'+I("dash-lg")+'</button><button class="b" onclick="aul(\''+d+'\',1)">+1 aula</button><input class="t" placeholder="Onde parei (aula e minuto)" value="'+esc(S.onde[d]||"")+'" onchange="onde(\''+d+'\',this.value)"></div></div>'}).join("");
+ return '<div class="hd">Aulas</div><div class="card"><h2>Controle de aulas do Gran</h2><div class="mut">Seu controle próprio, já que a conta é compartilhada. Total: '+ass+' de '+tot+' aulas ('+Math.round(ass/tot*100)+'%).</div><div class="bar" style="margin-top:10px"><i style="width:'+Math.round(ass/tot*100)+'%"></i></div></div><div class="grid">'+rows+'</div>'}
 function aul(d,n){S.aulas[d]=Math.max(0,Math.min(AULAS[d],(S.aulas[d]||0)+n));save();render()}
 function onde(d,v){S.onde[d]=v;save()}
 function baixar(nome,txt,tipo){var u=URL.createObjectURL(new Blob([txt],{type:tipo})),l=document.createElement("a");l.href=u;l.download=nome;document.body.appendChild(l);l.click();l.remove();setTimeout(function(){URL.revokeObjectURL(u)},2000)}
